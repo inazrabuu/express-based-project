@@ -13,4 +13,5 @@ It drills down the structure from
 
 - Clone the repo
 - Ask the environment file from the maintainer, put it in the root folder
+- `npm install`
 - `npm start`
