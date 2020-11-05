@@ -15,7 +15,7 @@ class Region extends BaseModel {
     return result
   }
 
-  async getProvices(){
+  async getProvinces(){
     let sql = this._buildAllProvincesQuery()
 
     return await this.db.exec(sql)
