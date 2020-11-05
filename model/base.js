@@ -14,25 +14,25 @@ class BaseModel{
 
   _buildHierarchyQuery(){
     return `
-    select kode, nama, jne_id, sicepat_id from ${this.table} where CHAR_LENGTH(kode) >= ? AND kode LIKE ?
+    select kode as code, nama as name, jne_id, sicepat_id from ${this.table} where CHAR_LENGTH(kode) >= ? AND kode LIKE ?
     `
   }
 
   _buildAllProvincesQuery(){
     return `
-    select kode, nama, jne_id, sicepat_id from ${this.table} where CHAR_LENGTH(kode) = 2
+    select kode as code, nama as name, jne_id, sicepat_id from ${this.table} where CHAR_LENGTH(kode) = 2
     `
   }
 
   _buildAllCitiesQuery(){
     return `
-    select kode, nama, jne_id, sicepat_id from ${this.table} where CHAR_LENGTH(kode) = 5
+    select kode as code, nama as name, jne_id, sicepat_id from ${this.table} where CHAR_LENGTH(kode) = 5
     `
   }
 
   _buildChildsByParentCodeQuery(){
     return `
-    select kode, nama, jne_id, sicepat_id from ${this.table} where CHAR_LENGTH(kode) = ? AND kode LIKE ?
+    select kode as code, nama as name, jne_id, sicepat_id from ${this.table} where CHAR_LENGTH(kode) = ? AND kode LIKE ?
     `
   }
 }
