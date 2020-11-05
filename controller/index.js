@@ -47,7 +47,12 @@ class Index{
       body.message = 'success'
       
       if (type == 'province'){
-        body.data = await regionModel.getProvinces()
+        try{
+          body.data = await regionModel.getProvinces()
+        } catch (err){
+          return next(new Error(err))
+        }
+        
       } else {
         let exec = ''
         switch (type){
@@ -61,8 +66,11 @@ class Index{
             exec = regionModel.getVillagesByDistrict(code)
             break
         }
-
-        body.data = await exec
+        try{
+          body.data = await exec
+        } catch (err){
+          return next(new Error(err))
+        }
       }
     } else{
       body.message = 'Unknown type'
