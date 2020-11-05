@@ -4,12 +4,13 @@ module.exports = function(app){
 		// err.status = 404
 		// next(err)
 		let context = {
-			code: 404,
-			title: 'Page not found!',
-			text: `We can't find your requested page, please go back to home.`,
-			global: global
+      code: 404,
+      body: {
+        title: 'Route not found!',
+			  text: `We can't find your requested page, please go back to home.`
+      }
 		}
-		res.render('error', context)
+		res.status(404).json(context)
 	})
 	
 	app.use((err, req, res, next) => {
@@ -21,11 +22,13 @@ module.exports = function(app){
 		let text = process.env.ENV == 'prod' ? 
 			"Something is wrong with the response, please try again." : err.message
 		let context = {
-			code: err.status || 500,
-			title: "Internal Error",
-			text: text
+      code: err.status || 500,
+      body: {
+        title: "Internal Error",
+			  text: text
+      }
 		}
     // res.render('error', context)
-    res.json(context)
+    res.status(err.status || 500).json(context)
 	})
 }
