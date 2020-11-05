@@ -1,13 +1,6 @@
-# Regions in Indonesia
+# Express based project starter pack
 
-A service to query all regions in Indonesia, based on data provided by The Indonesia Internal Affairs Ministry regulation.
-
-It drills down the structure from
-
-- Province
-- City / Regency
-- District
-- Village
+Starter pack for developing project with Nodejs express
 
 ## How To Run
 
