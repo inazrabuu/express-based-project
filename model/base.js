@@ -35,15 +35,6 @@ class BaseModel{
     select kode, nama, jne_id, sicepat_id from ${this.table} where CHAR_LENGTH(kode) = ? AND kode LIKE ?
     `
   }
-
-  async test(){
-    let sql = this._buildChildsByParentCodeQuery()
-    let param = [5, '33%']
-
-    const result = await this.db.exec(sql, param)
-    
-    return result
-  }
 }
 
 module.exports = BaseModel
