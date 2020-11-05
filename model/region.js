@@ -9,7 +9,6 @@ class Region extends BaseModel {
     let raw = this._buildChildsByParentCodeQuery()
     let param = [codeLength, `${parentCode}%`]
     let sql = this.db.conn.format(raw, param)
-    console.log(sql)
 
     const result = await this.db.exec(sql)
 
