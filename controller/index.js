@@ -29,6 +29,50 @@ class Index{
       body: response
     })
   }
+
+  async getData(req, res, next){
+    let type = req.params.type || 'province'
+    let code = req.query.code || '10'
+
+    let acceptedType = [
+      'province', 'city', 'district', 'village'
+    ]
+
+    let body = {
+      message: '', 
+      data: []
+    }
+
+    if (acceptedType.includes(type)){
+      body.message = 'success'
+      
+      if (type == 'province'){
+        body.data = await regionModel.getProvinces()
+      } else {
+        let exec = ''
+        switch (type){
+          case 'city':
+            exec = regionModel.getCitiesByProvince(code)
+            break
+          case 'district':
+            exec = regionModel.getDistrictsByCity(code)
+            break
+          case 'village':
+            exec = regionModel.getVillagesByDistrict(code)
+            break
+        }
+
+        body.data = await exec
+      }
+    } else{
+      body.message = 'Unknown type'
+    }
+
+    res.json({
+      code: 200,
+      body: body
+    })
+  }
 }
 
 module.exports = Index
