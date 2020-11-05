@@ -19,7 +19,6 @@ class Db{
 				}
 
 				resolve(results)
-				this.conn.close()
 			})
 		})
 	}
